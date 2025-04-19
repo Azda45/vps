@@ -1,8 +1,7 @@
 name: vpsrun
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -10,5 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: sudo apt install neofetch -y
-      - run: curl -sSf https://sshx.io/get | sh -s run
+      - name: Install neofetch
+        run: sudo apt install neofetch -y
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
